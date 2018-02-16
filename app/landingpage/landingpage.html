@@ -1,0 +1,51 @@
+<div class="landingPage">
+  <div class="landingPageHeaderDiv">
+    <img class="wuLogo" src="http://icons.wxug.com/graphics/wu2/logo_130x80.png" />
+    <img class="landingPageHeaderImage" src="/images/ChaseCast.png" />
+    <h4 class="headerTitle"><span class="cChase">C</span>HASE<span class="cCast">C</span>AST WEATHER</h4>
+  </div>
+
+  <div class="searchPageInput">
+    <form class="input-group zipcodeBox">
+      <input ng-model="$ctrl.zipcode" type="text" class="form-control" placeholder="Enter zipcode...">
+      <span class="input-group-btn">
+      <button ng-click="$ctrl.getWeather()" class="btn btn-primary searchPageButton" type="submit">Get Weather</button>
+    </span>
+    </form>
+  </div>
+  <p class="errorMessage" ng-show="$ctrl.errorMessage">
+    Must enter valid zipcode
+  </p>
+  <h2 class="loadingMessage" ng-show="$ctrl.loading">Loading...</h2>
+  <div class="fourDayBox" ng-show="$ctrl.showWeather">
+    <h1 class="cityState">{{$ctrl.city}}, {{$ctrl.state}}</h1>
+    <a href="{{$ctrl.link}}" target="_blank">
+      <p class="moreInfoButton">
+        Detailed Forecast
+      </p>
+    </a>
+    <h2 class="tenDayHeader">Current Conditions</h2>
+    <div class="currentConditionBox">
+      <div class="leftCurrent">
+        <h1 class="currentTemp">{{$ctrl.currentTemp}} &#8457;</h1>
+        <img class="currentIcon" src="{{$ctrl.currentIcon}}" />
+        <h3 class="currentCondition">{{$ctrl.currentCondition}}</h3>
+        <p class="windInfo">
+          <span class="windHeader">Winds: </span><i>{{$ctrl.currentWind}}</i>
+        </p>
+      </div>
+      <div class="rightCurrent">
+        <h3 class="radarHeader">Radar</h3>
+        <img class="radarDisplay" src="{{$ctrl.radar}}" />
+      </div>
+    </div>
+    <h2 class="tenDayHeader">10 Day Forecast</h2>
+    <div class="fourDay" ng-repeat="day in $ctrl.weather">
+      <h5 class="weatherDate">{{day.date.weekday_short}}, {{day.date.monthname_short}} {{day.date.day}}</h5>
+      <h5 class="weatherHigh">High: <span class="highNumber">{{day.high.fahrenheit}}</span><span class="fahrenheitHigh">&#8457;</span></h5>
+      <img class="weatherIcon" src="{{day.icon_url}}" />
+      <h4 class="weatherCondition">{{day.conditions}}</h4>
+      <h5 class="weatherLow">Low: <span class="lowNumber">{{day.low.fahrenheit}}</span><span class="fahrenheitLow">&#8457;</span></h5>
+    </div>
+  </div>
+</div>
