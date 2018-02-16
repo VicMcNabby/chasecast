@@ -1,6 +1,6 @@
 <div class="landingPage">
   <div class="landingPageHeaderDiv">
-    <img class="wuLogo" src="http://icons.wxug.com/graphics/wu2/logo_130x80.png" />
+    <img id="top" class="wuLogo" src="http://icons.wxug.com/graphics/wu2/logo_130x80.png" />
     <img class="landingPageHeaderImage" src="/images/ChaseCast.png" />
     <h4 class="headerTitle"><span class="cChase">C</span>HASE<span class="cCast">C</span>AST WEATHER</h4>
   </div>
@@ -16,14 +16,21 @@
   <p class="errorMessage" ng-show="$ctrl.errorMessage">
     Must enter valid zipcode
   </p>
-  <h2 class="loadingMessage" ng-show="$ctrl.loading">Loading...</h2>
+  <div class="loadingBox" ng-show="$ctrl.loading">
+    <div class="rainy">
+      <h5 class="loadingMessage">Loading...</h5>
+    </div>
+
+  </div>
   <div class="fourDayBox" ng-show="$ctrl.showWeather">
     <h1 class="cityState">{{$ctrl.city}}, {{$ctrl.state}}</h1>
-    <a href="{{$ctrl.link}}" target="_blank">
-      <p class="moreInfoButton">
-        Detailed Forecast
-      </p>
-    </a>
+    <div class="detailBox">
+      <a href="{{$ctrl.link}}" target="_blank">
+        <p class="moreInfoButton">
+          Detailed Forecast
+        </p>
+      </a>
+    </div>
     <h2 class="tenDayHeader">Current Conditions</h2>
     <div class="currentConditionBox">
       <div class="leftCurrent">
@@ -47,5 +54,8 @@
       <h4 class="weatherCondition">{{day.conditions}}</h4>
       <h5 class="weatherLow">Low: <span class="lowNumber">{{day.low.fahrenheit}}</span><span class="fahrenheitLow">&#8457;</span></h5>
     </div>
+    <p ng-show="$ctrl.backToTop" class="backToTop" href="#top" du-smooth-scroll>
+      Back To Top
+    </p>
   </div>
 </div>

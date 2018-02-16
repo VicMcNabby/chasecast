@@ -8,6 +8,7 @@
     vm.showWeather = false
     vm.errorMessage = false
     vm.loading = false
+    vm.backToTop = false;
 
     vm.getWeather = function() {
       let zipcode = vm.zipcode
@@ -25,7 +26,7 @@
           })
 
 
-        $http.get(`http://api.wunderground.com/api/0c756c2f6fb68c00/conditions/q/${zipcode}.json`)
+        $http.get(`https://api.wunderground.com/api/0c756c2f6fb68c00/conditions/q/${zipcode}.json`)
           .then(result => {
             console.log('current: ', result);
             vm.currentCondition = result.data.current_observation.weather;
@@ -39,6 +40,7 @@
             console.log('radar: ', results);
             vm.radar = results.config.url.substring(36);
             vm.showWeather = true
+            vm.backToTop = true
             vm.loading = false
           })
         $http.get(`https://api.wunderground.com/api/0c756c2f6fb68c00/forecast10day/q/${zipcode}.json`)
@@ -52,6 +54,7 @@
       } else {
         vm.errorMessage = true;
         vm.showWeather = false
+        vm.loading = false
         vm.zipcode = ''
       }
     }
